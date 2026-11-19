@@ -24,7 +24,7 @@ php artisan test
 ## Berpindah ke Database Server (MySQL)
 
 1. Ubah `APP_IN_CODE=false` dan isi konfigurasi `DB_*` di `.env`.
-2. Jalankan migrasi:
+2. Jalankan migrasi & seeder data awal:
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
    ```

@@ -14,14 +14,18 @@ class DatabaseCatalogSource extends BaseCatalogSource
 {
     public function getStores(): array
     {
-        return Store::all()
+        return Store::query()
+            ->orderBy('id')
+            ->get()
             ->map(fn (Store $store) => $this->hydrateStore($store->toArray()))
             ->all();
     }
 
     public function findStoreBySlug(string $slug): ?StoreEntity
     {
-        $store = Store::with('products')->where('slug', $slug)->first();
+        $store = Store::with(['products' => fn ($query) => $query->orderBy('id')])
+            ->where('slug', $slug)
+            ->first();
         if (! $store) {
             return null;
         }
