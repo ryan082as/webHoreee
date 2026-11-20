@@ -1,30 +1,35 @@
-# webHoreee
+## 🚀 Cara Menjalankan Proyek
 
-Kerangka web **Katalog Multi-Toko & Sistem Pemesanan (MVP)** berbasis Laravel dengan struktur PHP OOP (`src/`), HTML5 semantik, data/API lokal sementara (`database/databaseInCode.php` dan `routes/apiInCode.php`), serta integrasi checkout ke WhatsApp admin toko.
+### Cara 1 — Menggunakan PHP CLI Server (Paling Cepat & Praktis)
 
-Lihat spesifikasi lengkap pada [PRD.md](PRD.md).
-
-## Cara Menjalankan Lokal
-
-```bash
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan serve
-```
-
-Lalu buka `http://127.0.0.1:8000` di browser (atau `http://127.0.0.1:8000/api/stores` untuk API lokal).
-
-## Menjalankan Test
-
-```bash
-php artisan test
-```
-
-## Berpindah ke Database Server (MySQL)
-
-1. Ubah `APP_IN_CODE=false` dan isi konfigurasi `DB_*` di `.env`.
-2. Jalankan migrasi & seeder data awal:
+1. Buka Terminal / PowerShell di folder proyek:
    ```bash
-   php artisan migrate --seed
+   cd webHoreee
    ```
+2. Jalankan perintah server:
+   ```bash
+   php -S 127.0.0.1:8000 -t public
+   ```
+3. Buka browser di alamat:
+   * **Website:** [http://127.0.0.1:8000](http://127.0.0.1:8000)
+   * **REST API:** [http://127.0.0.1:8000/api/stores](http://127.0.0.1:8000/api/stores)
+
+### Cara 2 — Menggunakan Laragon / XAMPP (Windows)
+
+1. Pindahkan folder proyek ke `C:\laragon\www\webHoreee` (atau `htdocs` di XAMPP).
+2. Pastikan web server Apache/Nginx aktif.
+3. Karena Document Root aplikasi berada di folder `public`, Anda dapat:
+   * Menjalankan terminal Laragon lalu ketik `php -S 127.0.0.1:8000 -t public`, **atau**
+   * Mengatur Virtual Host Laragon agar Document Root mengarah ke `C:/laragon/www/webHoreee/public`.
+
+---
+
+## 🧪 Menjalankan Pengujian Otomatis (Tests)
+
+Proyek dilengkapi dengan Test Suite otomatis yang memverifikasi 100% fungsionalitas OOP, rute, form, keranjang, semantik HTML, dan REST API.
+
+Jalankan perintah berikut di terminal:
+
+```bash
+php tests/run_tests.php
+```
